@@ -4,6 +4,7 @@ new Vue({
     player_life: 100,
     monster_life: 100,
     game_is_on: false,
+    logs: [],
   },
   methods: {
     start_game: function () {
@@ -12,27 +13,33 @@ new Vue({
     attack() {
       var point = Math.ceil(Math.random() * 10);
       this.monster_life -= point;
-
+      this.add_to_log({ trun: "p", text: "Player Attack(" + point + ") " });
       this.monster_attack();
     },
     special_attack() {
       var point = Math.ceil(Math.random() * 25);
       this.monster_life -= point;
-
+      this.add_to_log({ trun: "p", text: "Special Attack(" + point + ") " });
       this.monster_attack();
     },
 
     first_aid() {
       var point = Math.ceil(Math.random() * 20);
       this.player_life += point;
+      this.add_to_log({ trun: "p", text: "First Aid (" + point + ") " });
       this.monster_attack();
     },
     give_up() {
       this.player_life = 0;
+      this.add_to_log({ trun: "p", text: "Player Give up " });
     },
     monster_attack() {
       var point = Math.ceil(Math.random() * 10);
       this.player_life -= point;
+      this.add_to_log({ trun: "m", text: "Monster Attack(" + point + ") " });
+    },
+    add_to_log(log) {
+      this.logs.push(log);
     },
   },
   watch: {

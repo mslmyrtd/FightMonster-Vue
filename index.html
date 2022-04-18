@@ -30,18 +30,20 @@
       </section>
       <section class="row controls">
         <div class="small-12 columns">
-          <button id="start-game">New Game</button>
+          <button id="start-game" @click="start_game">New Game</button>
         </div>
       </section>
-      <section class="row controls">
+      <section class="row controls" v-if="game_is_on">
         <div class="small-12 columns">
-          <button id="attack">Attack</button>
-          <button id="special-attack">Special Attack</button>
-          <button id="heal">First Aid</button>
-          <button id="give-up">Give Up!</button>
+          <button id="attack" @click="attack">Attack</button>
+          <button id="special-attack" @click="special_attack">
+            Special Attack
+          </button>
+          <button id="heal" @click="first_aid">First Aid</button>
+          <button id="give-up" @click="give_up">Give Up!</button>
         </div>
       </section>
-      <section class="row log">
+      <section class="row log" v-if="game_is_on">
         <div class="small-12 columns">
           <ul>
             <li></li>
@@ -49,5 +51,6 @@
         </div>
       </section>
     </div>
+    <script src="app.js"></script>
   </body>
 </html>

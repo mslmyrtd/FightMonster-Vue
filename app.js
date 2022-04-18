@@ -12,17 +12,27 @@ new Vue({
     attack() {
       var point = Math.ceil(Math.random() * 10);
       this.monster_life -= point;
-      console.log(this.monster_life);
+
       this.monster_attack();
     },
-    special_attack() {},
-    first_aid() {},
-    give_up() {},
+    special_attack() {
+      var point = Math.ceil(Math.random() * 25);
+      this.monster_life -= point;
+
+      this.monster_attack();
+    },
+
+    first_aid() {
+      var point = Math.ceil(Math.random() * 20);
+      this.player_life += point;
+      this.monster_attack();
+    },
+    give_up() {
+      this.player_life = 0;
+    },
     monster_attack() {
       var point = Math.ceil(Math.random() * 10);
       this.player_life -= point;
-
-      console.log(this.player_life);
     },
   },
 });

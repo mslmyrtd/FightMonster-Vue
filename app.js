@@ -35,4 +35,28 @@ new Vue({
       this.player_life -= point;
     },
   },
+  watch: {
+    player_life(value) {
+      if (value < 0) {
+        this.player_life = 0;
+        if (confirm("You lost the game! Do you want to play again?")) {
+          this.player_life = 100;
+          this.monster_life = 100;
+        }
+      } else if (value >= 100) {
+        this.player_life = 100;
+      }
+    },
+    monster_life(value) {
+      if (value < 0) {
+        this.monster_life = 0;
+        if (confirm("You won the game! Do you want to play again?")) {
+          this.player_life = 100;
+          this.monster_life = 100;
+        }
+      } else if (value >= 100) {
+        this.monster_life = 100;
+      }
+    },
+  },
 });

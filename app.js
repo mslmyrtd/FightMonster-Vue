@@ -13,30 +13,30 @@ new Vue({
     attack() {
       var point = Math.ceil(Math.random() * 10);
       this.monster_life -= point;
-      this.add_to_log({ trun: "p", text: "Player Attack(" + point + ") " });
+      this.add_to_log({ turn: "p", text: "Player Attack(" + point + ") " });
       this.monster_attack();
     },
     special_attack() {
       var point = Math.ceil(Math.random() * 25);
       this.monster_life -= point;
-      this.add_to_log({ trun: "p", text: "Special Attack(" + point + ") " });
+      this.add_to_log({ turn: "p", text: "Special Attack(" + point + ") " });
       this.monster_attack();
     },
 
     first_aid() {
       var point = Math.ceil(Math.random() * 20);
       this.player_life += point;
-      this.add_to_log({ trun: "p", text: "First Aid (" + point + ") " });
+      this.add_to_log({ turn: "p", text: "First Aid (" + point + ") " });
       this.monster_attack();
     },
     give_up() {
       this.player_life = 0;
-      this.add_to_log({ trun: "p", text: "Player Give up " });
+      this.add_to_log({ turn: "p", text: "Player Give up " });
     },
     monster_attack() {
-      var point = Math.ceil(Math.random() * 10);
+      var point = Math.ceil(Math.random() * 15);
       this.player_life -= point;
-      this.add_to_log({ trun: "m", text: "Monster Attack(" + point + ") " });
+      this.add_to_log({ turn: "m", text: "Monster Attack(" + point + ") " });
     },
     add_to_log(log) {
       this.logs.push(log);
@@ -49,6 +49,7 @@ new Vue({
         if (confirm("You lost the game! Do you want to play again?")) {
           this.player_life = 100;
           this.monster_life = 100;
+          this.logs = [];
         }
       } else if (value >= 100) {
         this.player_life = 100;
@@ -60,6 +61,7 @@ new Vue({
         if (confirm("You won the game! Do you want to play again?")) {
           this.player_life = 100;
           this.monster_life = 100;
+          this.logs = [];
         }
       } else if (value >= 100) {
         this.monster_life = 100;
